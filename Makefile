@@ -6,18 +6,18 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 09:59:30 by vfurmane          #+#    #+#              #
-#    Updated: 2021/07/02 11:26:42 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/07/02 12:17:17 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= snake
 MLXDIR		= minilibx-linux
 MLXFILE		= $(MLXDIR)/libmlx_Linux.a
-SRCS		= $(addprefix srcs/, main.c mlx_events.c)
+SRCS		= $(addprefix srcs/, init.c main.c mlx_events.c my_mlx.c)
 OBJS		= $(SRCS:.c=.o)
 INCL		= $(addprefix -I , includes $(MLXDIR))
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 LIBS		= -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 RM			= rm -f
 
