@@ -6,11 +6,31 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 12:14:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 12:17:29 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 13:07:18 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "snake.h"
+
+void	init_snake(t_config *config)
+{
+	uint8_t	i;
+	t_pixel	body;
+
+	bzero(config->snake, 325 * sizeof (*config->snake));
+	body.color = HEAD;
+	body.x = 5;
+	body.y = 9;
+	i = 0;
+	while (i < 4)
+	{
+		config->snake[i] = body;
+		if (i == 0)
+			body.color = BODY;
+		body.x--;
+		i++;
+	}
+}
 
 uint8_t	init_mlx(t_config *config)
 {
