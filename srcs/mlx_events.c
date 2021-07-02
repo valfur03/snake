@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 15:49:05 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:09:35 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ static int	my_mlx_loop_hook(t_config *config)
 		}
 		config->snake[0].color = HEAD;
 		config->snake[1].color = BODY;
+		if (config->snake[0].x == config->collectible.x
+				&& config->snake[0].y == config->collectible.y)
+		{
+			config->score++;
+			generate_new_collectible(&config->collectible);
+		}
 		render_map(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 		config->last_direction = config->direction;

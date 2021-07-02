@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 12:14:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 15:28:50 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 16:22:47 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	init_snake(t_config *config)
 	t_pixel	body;
 
 	bzero(config->snake, 325 * sizeof (*config->snake));
+	config->score = 0;
+	config->collectible.x = 5;
+	config->collectible.y = 5;
 	config->direction = RIGHT;
 	config->last_direction = RIGHT;
 	body.color = HEAD;

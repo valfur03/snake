@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 15:29:02 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:10:05 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef enum e_colors
 	BORDER = 0x578A34,
 	FLOOR = 0xAAD751,
 	BODY = 0x426FE3,
-	HEAD = 0x4E7CF6
+	HEAD = 0x4E7CF6,
+	COLLECTIBLE = 0xE7471D
 }				t_colors;
 
 typedef enum e_direction
@@ -62,11 +63,15 @@ typedef struct s_config
 	void		*mlx;
 	void		*win;
 	t_mlx_img	img;
+	uint16_t	score;
 	t_pixel		snake[325];
+	t_pixel		collectible;
 	t_direction	direction;
 	t_direction	last_direction;
 	uint8_t		playing;
 }				t_config;
+
+void	generate_new_collectible(t_pixel *collectible);
 
 void	init_snake(t_config *config);
 uint8_t	init_mlx(t_config *config);

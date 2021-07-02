@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:43:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 14:04:17 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 16:21:32 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	render_map(t_config *config)
 				pixel.color = BORDER;
 			else if (pixel_is_snake(config->snake, &pixel, &color))
 				pixel.color = color;
+			else if (pixel.x == config->collectible.x && pixel.y == config->collectible.y)
+				pixel.color = COLLECTIBLE;
 			else
 				pixel.color = FLOOR;
 			my_mlx_put_pixel_size(&config->img, &pixel);
