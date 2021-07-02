@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:43:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:46:11 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:59:18 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@ static uint8_t	pixel_is_border(t_pixel *pixel)
 	return (0);
 }
 
-uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint32_t *color)
+uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint16_t start, uint32_t *color)
 {
 	uint16_t	i;
 
-	i = 0;
+	i = start;
 	while (i < config->snake_size)
 	{
 		if (config->snake[i].x == pixel->x && config->snake[i].y == pixel->y)
 		{
-			*color = config->snake[i].color;
+			if (color != NULL)
+				*color = config->snake[i].color;
 			return (1);
 		}
 		i++;
@@ -51,7 +52,7 @@ void	render_map(t_config *config)
 		{
 			if (pixel_is_border(&pixel))
 				pixel.color = BORDER;
-			else if (pixel_is_snake(config, &pixel, &color))
+			else if (pixel_is_snake(config, &pixel, 0, &color))
 				pixel.color = color;
 			else if (pixel.x == config->collectible.x && pixel.y == config->collectible.y)
 				pixel.color = COLLECTIBLE;

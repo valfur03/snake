@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 17:07:42 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:54:13 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:56:08 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	generate_new_collectible(t_config *config)
 	{
 		pixel.x = i % 18 + 1;
 		pixel.y = i / 18 + 1;
-		if (pixel_is_snake(config, &pixel, &pixel.color))
+		if (pixel_is_snake(config, &pixel, NULL))
 			collectible_index++;
 		if (i == collectible_index)
 			break ;
