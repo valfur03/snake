@@ -6,16 +6,16 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:43:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:59:18 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 18:26:08 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "snake.h"
 
-static uint8_t	pixel_is_border(t_pixel *pixel)
+static uint8_t	pixel_is_border(t_config *config, t_pixel *pixel)
 {
-	if (pixel->x == 0 || pixel->x == 19
-		|| pixel->y == 0 || pixel->y == 19)
+	if (pixel->x == 0 || pixel->x == config->width / config->tile_size - 1
+		|| pixel->y == 0 || pixel->y == config->height / config->tile_size - 1)
 		return (1);
 	return (0);
 }
@@ -43,14 +43,14 @@ void	render_map(t_config *config)
 	t_pixel		pixel;
 	uint32_t	color;
 
-	pixel.size = 40;
+	pixel.size = config->tile_size;
 	pixel.x = 0;
-	while (pixel.x < 20)
+	while (pixel.x < config->width / config->tile_size)
 	{
 		pixel.y = 0;
-		while (pixel.y < 20)
+		while (pixel.y < config->height / config->tile_size)
 		{
-			if (pixel_is_border(&pixel))
+			if (pixel_is_border(config, &pixel))
 				pixel.color = BORDER;
 			else if (pixel_is_snake(config, &pixel, 0, &color))
 				pixel.color = color;

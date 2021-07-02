@@ -6,16 +6,16 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:58:04 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 20:56:30 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "snake.h"
 
-static uint8_t	snake_is_border(t_pixel *snake)
+static uint8_t	snake_is_border(t_config *config)
 {
-	if (snake[0].x == 0 || snake[0].x == 19
-		|| snake[0].y == 0 || snake[0].y == 19)
+	if (config->snake[0].x == 0 || config->snake[0].x == config->width / config->tile_size - 1
+		|| config->snake[0].y == 0 || config->snake[0].y == config->height / config->tile_size - 1)
 		return (1);
 	return (0);
 }
@@ -29,8 +29,8 @@ static int	my_mlx_loop_hook(t_config *config)
 		return (0);
 	if (config->playing == 0)
 		return (0);
-	else if ((time_now.tv_usec > initial_time && time_now.tv_usec - initial_time >= 200000)
-			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= 200000)
+	else if ((time_now.tv_usec > initial_time && time_now.tv_usec - initial_time >= (long)config->speed)
+			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= (long)config->speed)
 			|| config->last_direction != config->direction)
 	{
 		memmove(config->snake + 1, config->snake, 323 * sizeof (*config->snake));
@@ -39,7 +39,7 @@ static int	my_mlx_loop_hook(t_config *config)
 			- (config->direction == LEFT);
 		config->snake[0].y += (config->direction == DOWN)
 			- (config->direction == UP);
-		if (snake_is_border(config->snake))
+		if (snake_is_border(config))
 		{
 			config->playing = 0;
 			return (0);
@@ -49,9 +49,9 @@ static int	my_mlx_loop_hook(t_config *config)
 		if (config->snake[0].x == config->collectible.x
 				&& config->snake[0].y == config->collectible.y)
 		{
+			generate_new_collectible(config);
 			config->score++;
 			config->snake_size++;
-			generate_new_collectible(config);
 		}
 		if (pixel_is_snake(config, &config->snake[0], 1, NULL))
 		{
