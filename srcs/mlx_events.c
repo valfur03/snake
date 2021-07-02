@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 14:18:30 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 15:21:25 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ static uint8_t	snake_is_border(t_pixel *snake)
 
 static int	my_mlx_loop_hook(t_config *config)
 {
-	static uint16_t		i;
+	static suseconds_t	initial_time;
+	struct timeval		time_now;
 
+	if (gettimeofday(&time_now, NULL) == -1)
+		return (0);
 	if (config->playing == 0)
 		return (0);
-	else if (i == 1800)
+	else if ((time_now.tv_usec > initial_time && time_now.tv_usec - initial_time >= 200000)
+			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= 200000))
 	{
 		memmove(config->snake + 1, config->snake, 323 * sizeof (*config->snake));
 		config->snake[0] = config->snake[1];
@@ -43,10 +47,8 @@ static int	my_mlx_loop_hook(t_config *config)
 		config->snake[1].color = BODY;
 		render_map(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
-		i = 0;
+		initial_time = time_now.tv_usec;
 	}
-	else
-		i++;
 	return (0);
 }
 

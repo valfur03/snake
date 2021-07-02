@@ -6,17 +6,19 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 14:09:04 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 14:51:51 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SNAKE_H
 # define SNAKE_H
 
+# include <pthread.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
 # include <unistd.h>
 # include <X11/keysym.h>
 # include <X11/X.h>

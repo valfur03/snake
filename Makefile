@@ -6,7 +6,7 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 09:59:30 by vfurmane          #+#    #+#              #
-#    Updated: 2021/07/02 13:44:35 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/07/02 14:20:09 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS		= $(SRCS:.c=.o)
 INCL		= $(addprefix -I , includes $(MLXDIR))
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-LIBS		= -Lminilibx-linux -lmlx_Linux -lX11 -lXext
+LIBS		= -Lminilibx-linux -lmlx_Linux -lX11 -lXext -pthread
 RM			= rm -f
 
 %.o:		%.c
