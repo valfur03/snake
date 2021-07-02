@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 15:21:25 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 15:28:28 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	my_mlx_loop_hook(t_config *config)
 		config->snake[1].color = BODY;
 		render_map(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
+		config->last_direction = config->direction;
 		initial_time = time_now.tv_usec;
 	}
 	return (0);
@@ -62,13 +63,13 @@ static int	my_mlx_handle_key(int code, t_config *config)
 {
 	if (code == XK_Escape)
 		my_mlx_close_window(config->mlx);
-	else if (code == XK_Up && config->direction != DOWN)
+	else if (code == XK_Up && config->last_direction != DOWN)
 		config->direction = UP;
-	else if (code == XK_Down && config->direction != UP)
+	else if (code == XK_Down && config->last_direction != UP)
 		config->direction = DOWN;
-	else if (code == XK_Left && config->direction != RIGHT)
+	else if (code == XK_Left && config->last_direction != RIGHT)
 		config->direction = LEFT;
-	else if (code == XK_Right && config->direction != LEFT)
+	else if (code == XK_Right && config->last_direction != LEFT)
 		config->direction = RIGHT;
 	return (0);
 }
