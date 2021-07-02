@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:10:05 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:25:19 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_config
 	t_mlx_img	img;
 	uint16_t	score;
 	t_pixel		snake[325];
+	uint16_t	snake_size;
 	t_pixel		collectible;
 	t_direction	direction;
 	t_direction	last_direction;

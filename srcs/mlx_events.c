@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:09:35 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:27:43 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	my_mlx_loop_hook(t_config *config)
 				&& config->snake[0].y == config->collectible.y)
 		{
 			config->score++;
+			config->snake_size++;
 			generate_new_collectible(&config->collectible);
 		}
 		render_map(config);
