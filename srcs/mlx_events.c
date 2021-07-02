@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 20:56:30 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 21:29:10 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	my_mlx_loop_hook(t_config *config)
 {
 	static suseconds_t	initial_time;
 	struct timeval		time_now;
+	static uint8_t		going_to_die;
 
 	if (gettimeofday(&time_now, NULL) == -1)
 		return (0);
@@ -33,6 +34,17 @@ static int	my_mlx_loop_hook(t_config *config)
 			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= (long)config->speed)
 			|| config->last_direction != config->direction)
 	{
+		initial_time = time_now.tv_usec;
+		if ((config->snake[0].x + (config->direction == RIGHT) == config->width / config->tile_size - 1
+			|| config->snake[0].x - (config->direction == LEFT) == 0
+			|| config->snake[0].y + (config->direction == DOWN) == config->height / config->tile_size - 1
+			|| config->snake[0].y - (config->direction == UP) == 0)
+			&& going_to_die < 1)
+		{
+			going_to_die++;
+			return (0);
+		}
+		going_to_die = 0;
 		memmove(config->snake + 1, config->snake, 323 * sizeof (*config->snake));
 		config->snake[0] = config->snake[1];
 		config->snake[0].x += (config->direction == RIGHT)
@@ -61,7 +73,6 @@ static int	my_mlx_loop_hook(t_config *config)
 		render_map(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 		config->last_direction = config->direction;
-		initial_time = time_now.tv_usec;
 	}
 	return (0);
 }
