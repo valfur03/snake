@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:26 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 10:34:34 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 11:29:09 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int	main(void)
 {
-	void	*mlx;
+	t_config	config;
 
-	mlx = mlx_init();
-	mlx_destroy_display(mlx);
-	free(mlx);
+	config.mlx = mlx_init();
+	config.win = mlx_new_window(config.mlx, 800, 800, "snek");
+	my_mlx_events(&config);
+	mlx_loop(config.mlx);
+	mlx_destroy_window(config.mlx, config.win);
+	mlx_destroy_display(config.mlx);
+	free(config.mlx);
 	return (0);
 }
