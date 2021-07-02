@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:26 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 10:00:49 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 10:34:34 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 int	main(void)
 {
+	void	*mlx;
+
+	mlx = mlx_init();
+	mlx_destroy_display(mlx);
+	free(mlx);
 	return (0);
 }

@@ -6,11 +6,14 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 10:01:04 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 10:32:14 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SNAKE_H
 # define SNAKE_H
+
+# include <stdlib.h>
+# include "mlx.h"
 
 #endif
