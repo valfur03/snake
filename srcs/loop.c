@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 23:45:23 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 00:28:20 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 00:46:07 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ static uint8_t	move_snake(t_config *config)
 		- (config->direction == LEFT);
 	config->snake[0].y += (config->direction == DOWN)
 		- (config->direction == UP);
+	config->snake[0].color = HEAD;
+	config->snake[1].color = BODY;
 	if (snake_is_border(config)
 		|| pixel_is_snake(config, &config->snake[0], 1, NULL))
 	{
 		config->playing = 0;
 		return (0);
 	}
-	config->snake[0].color = HEAD;
-	config->snake[1].color = BODY;
 	if (config->snake[0].x == config->collectible.x
 		&& config->snake[0].y == config->collectible.y)
 	{
@@ -95,7 +95,8 @@ int	loop_hook(t_config *config)
 		initial_time = time_now.tv_usec;
 		if (is_going_to_die(config))
 			return (0);
-		move_snake(config);
+		if (move_snake(config) == 0)
+			return (0);
 		render_map(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
 			0, 0);
