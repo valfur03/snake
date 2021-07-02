@@ -1,0 +1,5 @@
+*.o
+snake
+*.out
+*.dSYM/
+.*.swp
