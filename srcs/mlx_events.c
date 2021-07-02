@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 15:28:28 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 15:49:05 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	my_mlx_loop_hook(t_config *config)
 	if (config->playing == 0)
 		return (0);
 	else if ((time_now.tv_usec > initial_time && time_now.tv_usec - initial_time >= 200000)
-			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= 200000))
+			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= 200000)
+			|| config->last_direction != config->direction)
 	{
 		memmove(config->snake + 1, config->snake, 323 * sizeof (*config->snake));
 		config->snake[0] = config->snake[1];
