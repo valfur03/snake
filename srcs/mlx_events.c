@@ -6,77 +6,11 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 23:19:09 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 00:17:40 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "snake.h"
-
-static uint8_t	snake_is_border(t_config *config)
-{
-	if (config->snake[0].x == 0 || config->snake[0].x == config->width / config->tile_size - 1
-		|| config->snake[0].y == 0 || config->snake[0].y == config->height / config->tile_size - 1)
-		return (1);
-	return (0);
-}
-
-static int	my_mlx_loop_hook(t_config *config)
-{
-	static suseconds_t	initial_time;
-	struct timeval		time_now;
-	static uint8_t		going_to_die;
-
-	if (gettimeofday(&time_now, NULL) == -1)
-		return (0);
-	if (config->playing == 0)
-		return (0);
-	else if ((time_now.tv_usec > initial_time && time_now.tv_usec - initial_time >= (long)config->speed)
-			|| (time_now.tv_usec < initial_time && 1000000 - initial_time + time_now.tv_usec >= (long)config->speed)
-			|| config->last_direction != config->direction)
-	{
-		initial_time = time_now.tv_usec;
-		if ((config->snake[0].x + (config->direction == RIGHT) == config->width / config->tile_size - 1
-			|| config->snake[0].x - (config->direction == LEFT) == 0
-			|| config->snake[0].y + (config->direction == DOWN) == config->height / config->tile_size - 1
-			|| config->snake[0].y - (config->direction == UP) == 0)
-			&& going_to_die < 1)
-		{
-			going_to_die++;
-			return (0);
-		}
-		going_to_die = 0;
-		memmove(config->snake + 1, config->snake, 323 * sizeof (*config->snake));
-		config->snake[0] = config->snake[1];
-		config->snake[0].x += (config->direction == RIGHT)
-			- (config->direction == LEFT);
-		config->snake[0].y += (config->direction == DOWN)
-			- (config->direction == UP);
-		if (snake_is_border(config))
-		{
-			config->playing = 0;
-			return (0);
-		}
-		config->snake[0].color = HEAD;
-		config->snake[1].color = BODY;
-		if (config->snake[0].x == config->collectible.x
-				&& config->snake[0].y == config->collectible.y)
-		{
-			generate_new_collectible(config);
-			config->score++;
-			config->snake_size++;
-			config->speed -= 70000 / config->tile_nbr;
-		}
-		if (pixel_is_snake(config, &config->snake[0], 1, NULL))
-		{
-			config->playing = 0;
-			return (0);
-		}
-		render_map(config);
-		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
-		config->last_direction = config->direction;
-	}
-	return (0);
-}
 
 static int	my_mlx_close_window(void *mlx)
 {
@@ -102,7 +36,7 @@ static int	my_mlx_handle_key(int code, t_config *config)
 void	my_mlx_events(t_config *config)
 {
 	config->playing = 1;
-	mlx_loop_hook(config->mlx, my_mlx_loop_hook, config);
+	mlx_loop_hook(config->mlx, loop_hook, config);
 	mlx_hook(config->win, ClientMessage, StructureNotifyMask,
 		my_mlx_close_window, config->mlx);
 	mlx_hook(config->win, KeyPress, KeyPressMask, my_mlx_handle_key, config);

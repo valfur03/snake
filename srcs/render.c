@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:43:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 18:26:08 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 23:41:07 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static uint8_t	pixel_is_border(t_config *config, t_pixel *pixel)
 	return (0);
 }
 
-uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint16_t start, uint32_t *color)
+uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint16_t start,
+	uint32_t *color)
 {
 	uint16_t	i;
 
@@ -54,7 +55,8 @@ void	render_map(t_config *config)
 				pixel.color = BORDER;
 			else if (pixel_is_snake(config, &pixel, 0, &color))
 				pixel.color = color;
-			else if (pixel.x == config->collectible.x && pixel.y == config->collectible.y)
+			else if (pixel.x == config->collectible.x
+				&& pixel.y == config->collectible.y)
 				pixel.color = COLLECTIBLE;
 			else
 				pixel.color = FLOOR;
