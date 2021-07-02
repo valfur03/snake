@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:25:19 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:50:51 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_config
 	uint8_t		playing;
 }				t_config;
 
-void	generate_new_collectible(t_pixel *collectible);
+void	generate_new_collectible(t_config *config);
 
 void	init_snake(t_config *config);
 uint8_t	init_mlx(t_config *config);
@@ -81,6 +81,7 @@ void	my_mlx_events(t_config *config);
 
 void	my_mlx_put_pixel_size(t_mlx_img *img, t_pixel *pixel);
 
+uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint32_t *color);
 void	render_map(t_config *config);
 
 #endif

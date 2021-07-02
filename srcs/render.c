@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 13:43:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 17:27:06 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:46:11 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static uint8_t	pixel_is_border(t_pixel *pixel)
 	return (0);
 }
 
-static uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint32_t *color)
+uint8_t	pixel_is_snake(t_config *config, t_pixel *pixel, uint32_t *color)
 {
 	uint16_t	i;
 
