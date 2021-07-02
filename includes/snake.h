@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 13:16:27 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 13:30:22 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ uint8_t	init_mlx(t_config *config);
 
 void	my_mlx_events(t_config *config);
 
-void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
+void	my_mlx_put_pixel_size(t_mlx_img *img, t_pixel *pixel);
 
 #endif

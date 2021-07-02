@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:26 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 13:25:13 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 13:28:53 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	pixel_is_border(t_pixel *pixel)
 {
-	if (pixel->x == 0 || pixel->x == 800 - pixel->size
-		|| pixel->y == 0 || pixel->y == 800 - pixel->size)
+	if (pixel->x == 0 || pixel->x == 19
+		|| pixel->y == 0 || pixel->y == 19)
 		return (1);
 	return (0);
 }
@@ -27,7 +27,7 @@ static int	pixel_is_snake(t_pixel *snake, t_pixel *pixel, uint32_t *color)
 	i = 0;
 	while (i < 4)
 	{
-		if (snake[i].x == pixel->x / 40 && snake[i].y == pixel->y / 40)
+		if (snake[i].x == pixel->x && snake[i].y == pixel->y)
 		{
 			*color = snake[i].color;
 			return (1);
@@ -44,10 +44,10 @@ void	render_map(t_config *config)
 
 	pixel.size = 40;
 	pixel.x = 0;
-	while (pixel.x < 800)
+	while (pixel.x < 20)
 	{
 		pixel.y = 0;
-		while (pixel.y < 800)
+		while (pixel.y < 20)
 		{
 			if (pixel_is_border(&pixel))
 				pixel.color = BORDER;
@@ -55,10 +55,10 @@ void	render_map(t_config *config)
 				pixel.color = color;
 			else
 				pixel.color = FLOOR;
-			my_mlx_put_pixel(&config->img, &pixel);
-			pixel.y += pixel.size;
+			my_mlx_put_pixel_size(&config->img, &pixel);
+			pixel.y++;
 		}
-		pixel.x += pixel.size;
+		pixel.x++;
 	}
 }
 

@@ -6,13 +6,13 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:53:23 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 11:53:41 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/02 13:31:23 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "snake.h"
 
-void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel)
+void	my_mlx_put_pixel_size(t_mlx_img *img, t_pixel *pixel)
 {
 	uint32_t		i;
 	uint32_t		j;
@@ -24,8 +24,10 @@ void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel)
 		j = 0;
 		while (j < pixel->size)
 		{
-			dest = img->addr + (img->size_line * (int)(pixel->y + j)
-					+ (img->bits_per_pixel / 8) * (int)(pixel->x + i));
+			dest = img->addr
+					+ (img->size_line * (int)(pixel->y * pixel->size + j)
+					+ (img->bits_per_pixel / 8)
+					* (int)(pixel->x * pixel->size + i));
 			*(unsigned int *)dest = pixel->color;
 			j++;
 		}
