@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 12:14:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/02 23:35:40 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 02:28:14 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_snake(t_config *config)
 	{
 		config->snake[i] = body;
 		if (i == 0)
-			body.color = BODY;
+			body.color = TAIL;
 		body.x--;
 		i++;
 	}

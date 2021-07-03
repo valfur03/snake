@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 23:45:23 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 00:46:07 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 02:26:41 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ static uint8_t	move_snake(t_config *config)
 		- (config->direction == LEFT);
 	config->snake[0].y += (config->direction == DOWN)
 		- (config->direction == UP);
-	config->snake[0].color = HEAD;
-	config->snake[1].color = BODY;
+	interpolate_snake_colors(config);
 	if (snake_is_border(config)
 		|| pixel_is_snake(config, &config->snake[0], 1, NULL))
 	{

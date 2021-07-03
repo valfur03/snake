@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 00:17:28 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 03:27:35 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef enum e_colors
 {
 	BORDER = 0x578A34,
 	FLOOR = 0xAAD751,
-	BODY = 0x426FE3,
-	HEAD = 0x4E7CF6,
+	HEAD = 0x426FE3,
+	TAIL = 0x3664D9,
 	COLLECTIBLE = 0xE7471D
 }				t_colors;
 
@@ -76,6 +76,8 @@ typedef struct s_config
 	t_direction	last_direction;
 	uint8_t		playing;
 }				t_config;
+
+void	interpolate_snake_colors(t_config *config);
 
 void	generate_new_collectible(t_config *config);
 
