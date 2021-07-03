@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 12:14:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 02:28:14 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:22:07 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_board(t_config *config)
 {
+	config->pause = 0;
 	config->width = 800;
 	config->height = 800;
 	config->tile_size = 40;

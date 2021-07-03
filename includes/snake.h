@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 03:27:35 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:21:56 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_config
 	void		*mlx;
 	void		*win;
 	t_mlx_img	img;
+	uint8_t		pause;
 	uint16_t	width;
 	uint16_t	height;
 	uint16_t	tile_size;

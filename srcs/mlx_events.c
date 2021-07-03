@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:08:21 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 00:17:40 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:26:50 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static int	my_mlx_handle_key(int code, t_config *config)
 {
 	if (code == XK_Escape)
 		my_mlx_close_window(config->mlx);
+	else if (code == XK_space)
+		config->pause = !config->pause;
+	else if (config->pause == 1)
+		return (0);
 	else if (code == XK_Up && config->last_direction != DOWN)
 		config->direction = UP;
 	else if (code == XK_Down && config->last_direction != UP)

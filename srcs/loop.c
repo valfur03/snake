@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 23:45:23 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 02:26:41 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:22:35 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	loop_hook(t_config *config)
 	static suseconds_t	initial_time;
 	struct timeval		time_now;
 
+	if (config->pause == 1)
+		return (0);
 	if (gettimeofday(&time_now, NULL) == -1)
 		return (0);
 	if (config->playing == 0)
