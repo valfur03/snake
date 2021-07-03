@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:00:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/07/03 15:21:56 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:29:33 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef enum e_colors
 {
 	BORDER = 0x578A34,
 	FLOOR = 0xAAD751,
-	HEAD = 0x426FE3,
-	TAIL = 0x3664D9,
+	HEAD = 0x547DE8,
+	TAIL = 0x1E48B3,
 	COLLECTIBLE = 0xE7471D
 }				t_colors;
 
